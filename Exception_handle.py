@@ -35,3 +35,34 @@ def check_file():
 	print("Print stamentent 7")
 
 check_file()
+
+# Custom Exception
+class Error(Exception):
+	pass
+	
+class MaxlengthError(Error):
+	"""This is to insure max length odf string """
+	pass
+
+class ShouldbestringError(Error):
+	"""It should be string"""
+	pass
+	
+def showdemo(sr):
+	try:
+		if isinstance(sr,str):
+			spt=len(sr)
+			if spt>6:
+				raise MaxlengthError
+		else:
+			raise ShouldbestringError
+	except MaxlengthError:
+		return "Max length is more than 5"
+	else:
+		return "His name is {0}".format(sr)
+		
+showdemo('deep')
+'His name is deep'
+showdemo('Simonto')
+'Max length is more than 5'
+showdemo(345)
